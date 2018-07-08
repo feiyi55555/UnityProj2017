@@ -7,7 +7,7 @@ public class Rocket : MonoBehaviour {
 
     public float m_speed = 10;
     public float m_liveTime = 1.5f;
-    public float m_power = 1;
+    public int m_power = 1;
 
     private Transform m_transform;
 
@@ -21,4 +21,12 @@ public class Rocket : MonoBehaviour {
 	void Update () {
         m_transform.Translate(new Vector3(0, 0, -m_speed * Time.deltaTime));
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.CompareTo("Enemy") == 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
